@@ -78,7 +78,7 @@ python -m torch.distributed.launch --nproc_per_node 8 --master_port 9527 train_a
 ```
 
 ### Recognition Module
-See [this notebook](TrOCR/train.ipynb)
+See [this notebook](TrOCR/test.ipynb)
 
 ## Inference
 Please prepare a font file for visualization, for instance, [`Noto Sans Traditional Chinese`](https://fonts.google.com/noto/specimen/Noto+Sans+TC) released by Google. Then run the following command.
@@ -89,7 +89,7 @@ python predict.py --weights yolov7/last.pt --recog_model ycchen/TrOCR-base-ver02
 
 ## Results
 In the following section, we split AICUP's original training set into a training set(the first 14,188 images) and a testing set(the last 1,000 images) for training and testing.
-When training the AICUP competition dataset, you can use our D501 weight as pre-train weights, and it can get better performance than training from scratch(using yolov7 default pre-train).
+When training the AICUP competition dataset, you can use our D501 weight as pre-train weights, and get better performance than training from scratch(using yolov7 default pre-train).
 
 ### Detection
 |    Train    |  Finetune   |  Testing   |  Precision |   Recall   |  F1 score  |

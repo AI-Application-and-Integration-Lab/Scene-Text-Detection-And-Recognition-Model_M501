@@ -48,6 +48,11 @@ For the D501 dataset, run the following command to convert the labels to YOLO fo
 python transform_data_D501toYolo.py
 ```
 
+For the AICUP competition dataset, run the following command to convert the labels to YOLO format:
+```bash
+python transform_data_AICUPtoYolo.py
+```
+
 
 ## Testing
 [`last.pt`](https://drive.google.com/file/d/1et_BXXtgXhsm-uQFXiZy-6TR7BXc4tMf/view?usp=sharing)

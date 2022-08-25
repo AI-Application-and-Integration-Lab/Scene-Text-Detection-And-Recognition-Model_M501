@@ -2,8 +2,8 @@ import os
 import json
 from tqdm import tqdm
 
-gts_root = "../dataset/AICUP/"  # Source
-output = "../dataset/AICUP/"    # Target
+gts_root = "./dataset/AICUP/"  # Source
+output = "./dataset/AICUP/"    # Target
 
 for split_name in ['train', 'val', 'test']:
     output_path = os.path.join(output, split_name)

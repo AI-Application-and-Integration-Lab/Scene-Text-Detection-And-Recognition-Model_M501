@@ -45,12 +45,12 @@ You can also use the AICUP competition dataset for training and testing. See mor
 
 For the D501 dataset, run the following command to convert the labels to YOLO format:
 ```bash
-python transform_data_D501toYolo.py
+python util/transform_data_D501toYolo.py
 ```
 
 For the AICUP competition dataset, run the following command to convert the labels to YOLO format:
 ```bash
-python transform_data_AICUPtoYolo.py
+python util/transform_data_AICUPtoYolo.py
 ```
 
 

@@ -106,7 +106,7 @@ The following measures are expressed as percentages. We only use string categori
 | D501_train  |      -      | D501_val   |    9.1                      |
 | D501_train  |      -      | D501_test  |   11.08                     |
 | AICUP_train |      -      | AICUP_test |   14.78                     |
-| D501_train  | AICUP_train | AICUP_test |    9.29                     |
+| D501_train  | AICUP_train | AICUP_test |    9.29(-5.49)              |
 
 ## Reference
 

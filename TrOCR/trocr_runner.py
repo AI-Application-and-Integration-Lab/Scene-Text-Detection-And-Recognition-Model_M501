@@ -16,7 +16,11 @@ class TrOCRRunner:
         source = self.opt.source
 
         for img_name in tqdm(all_bboxes):
-            img_path = Path(source) / img_name
+            source_path = Path(source)
+            if source_path.is_file():
+                img_path = source_path
+            else:
+                img_path = source_path / img_name
             # Read image
             img = Image.open(img_path)
             w, h = img.size
@@ -43,7 +47,6 @@ class TrOCRRunner:
 
                 # Crop image
                 crop_img = img.crop((x_min, y_min, x_max, y_max))
-                crop_img.save("test.png")
 
                 # Processor
                 pixel_values = self.processor(images=crop_img, return_tensors="pt").pixel_values

@@ -1,13 +1,7 @@
-import argparse, os, sys
-from pathlib import Path
-import json
-import cv2
-import numpy as np
-from PIL import Image, ImageDraw, ImageFont
-
+import argparse, os
 from yolov7.yolov7_runner import Yolov7Runner
 from TrOCR.trocr_runner import TrOCRRunner
-from yolov7.utils.general import increment_path
+from util.visualize import save_result
 
 def main(opt):
     # yolov7 init
@@ -22,49 +16,6 @@ def main(opt):
 
     # Visualize
     save_result(opt, all_labels)
-
-def save_result(opt, all_labels):
-    save_dir = Path(increment_path(Path(opt.name), exist_ok=opt.exist_ok))  # increment run
-    (save_dir / 'labels').mkdir(parents=True, exist_ok=True)  # make dir
-
-    # Save json
-    with open(save_dir / "labels.json", 'w', encoding='utf-8') as f:
-        json.dump(all_labels, f)
-
-    for img_name in all_labels:
-        img_path = Path(opt.source) / img_name
-        image = cv2.imread(str(img_path))
-
-        for label in all_labels[img_name]:
-            category = label['category']
-            category_id = label['category_id']
-            text = label['text']
-            det_conf = label['det_conf']
-            x_min = label['x_min']
-            y_min = label['y_min']
-            x_max = label['x_max']
-            y_max = label['y_max']
-
-            points = [[x_min, y_min], [x_max, y_min], [x_max, y_max], [x_min, y_max]]
-            if   category_id == 0: color = (0, 255, 0)
-            elif category_id == 1: color = (0, 0, 255)
-            elif category_id == 2: color = (255, 0, 0)
-            elif category_id == 3: color = (255, 255, 0)
-            elif category_id == 4: color = (0, 255, 255)
-            else:                  color = (255, 0, 255)
-
-            image = cv2.polylines(image, [np.array(points).astype(int)], True, color, 2)
-            
-            if opt.font != '':
-                image_pil = Image.fromarray(image)
-                draw = ImageDraw.Draw(image_pil)
-                draw.text((points[0][0] - 20, points[0][1] - 20), text, 
-                        font=ImageFont.truetype(str(Path(opt.font)), 32), fill=color)
-                image = np.array(image_pil)
-        cv2.imwrite(str(save_dir/img_name), image)
-        
-
-
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
